@@ -1,0 +1,76 @@
+{
+  "name": "todo-express",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node -r tsconfig-paths/register src/server.ts",
+    "dev": "nodemon -r tsconfig-paths/register src/server.ts",
+    "test": "jest",
+    "migration:create": "node-pg-migrate create -m ./src/db/migrations/",
+    "migration:run": "node-pg-migrate up -m ./src/db/migrations/",
+    "migration:revert": "node-pg-migrate down -m ./src/db/migrations/"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.2.1",
+    "@types/node-pg-migrate": "^2.3.1",
+    "@types/pg": "^8.15.5",
+    "@types/supertest": "^6.0.3",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.8",
+    "dotenv": "^17.2.1",
+    "eslint": "^9.32.0",
+    "express": "^5.1.0",
+    "install": "^0.13.0",
+    "jest": "^30.0.5",
+    "node-pg-migrate": "^8.0.3",
+    "nodemon": "^3.1.10",
+    "npm": "^10.9.3",
+    "prettier": "^3.6.2",
+    "supertest": "^7.1.4",
+    "ts-jest": "^29.4.1",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "class-validator": "^0.14.2",
+    "pg": "^8.16.3",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "nodemon": {
+    "exec": "ts-node -r tsconfig-paths/register src/server.ts",
+    "watch": [
+      "src/**/*.ts"
+    ],
+    "ext": "ts,json"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/dist/"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.[jt]s?(x)",
+      "**/?(*.)+(spec|test).[jt]s?(x)"
+    ],
+    "rootDir": "./",
+    "moduleNameMapper": {
+      "^@app/(.*)$": "<rootDir>/src/app/$1",
+      "^@test/(.*)$": "<rootDir>/test/$1",
+      "^@config/(.*)$": "<rootDir>/src/config/$1",
+      "^@application/(.*)$": "<rootDir>/src/app/application/$1",
+      "^@domain/(.*)$": "<rootDir>/src/app/domain/$1",
+      "^@infrastructure/(.*)$": "<rootDir>/src/app/infrastructure/$1",
+      "^@db/(.*)$": "<rootDir>/db"
+    }
+  }
+}
